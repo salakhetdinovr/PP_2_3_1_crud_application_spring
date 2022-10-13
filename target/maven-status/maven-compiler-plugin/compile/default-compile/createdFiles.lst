@@ -1,0 +1,13 @@
+web/config/JavaConfig.class
+web/dao/CarDaoImpl.class
+web/service/CarService.class
+web/dao/CarDao.class
+web/dao/UserDaoImpl.class
+web/model/User.class
+web/service/UserServiceImpl.class
+web/service/UserService.class
+web/model/Car.class
+web/controller/UserController.class
+web/service/CarServiceImpl.class
+web/config/AppInit.class
+web/dao/UserDao.class

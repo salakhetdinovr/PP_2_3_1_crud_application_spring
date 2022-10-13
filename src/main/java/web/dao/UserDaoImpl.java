@@ -9,20 +9,35 @@ import javax.transaction.Transactional;
 import java.util.List;
 
 @Repository
+@Transactional
 public class UserDaoImpl implements UserDao{
 
     @PersistenceContext
     private EntityManager entityManager;
 
     @Override
-    @Transactional
+    @SuppressWarnings("unchecked")
     public List<User> listUsers() {
-        return entityManager.createQuery("select u from User u", User.class).getResultList();
+        return entityManager.createQuery("select u from User u").getResultList();
     }
 
     @Override
-    @Transactional
-    public void add(User user) {
+    public void createUser(User user) {
         entityManager.persist(user);
+    }
+
+    @Override
+    public void removeUser(User user) {
+        entityManager.remove(entityManager.contains(user) ? user : entityManager.merge(user));
+    }
+
+    @Override
+    public User getUserById(int id) {
+        return entityManager.find(User.class, id);
+    }
+
+    @Override
+    public void updateUser(User user) {
+        entityManager.merge(user);
     }
 }
